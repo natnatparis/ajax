@@ -1,0 +1,45 @@
+<h1 class="text-center mb-4">Welcome to my todolist app</h1>
+<%= render 'layouts/task_form'  %>
+<div class="container">
+  <ul>
+  <% @categories.each do  |category|%>
+  <li><%= category.title  %></li>
+  <!-- Ajout de class pour facilité la manipulation du DOM -->
+  <div class="card category-content category-<%= category.id %>">
+    <ul>
+      <% category.tasks.each do |task|  %>
+        <!-- Ajout de class pour facilité la manipulation du DOM -->
+      <li class="task-<%= task.id %>"           
+
+          <% if task.status %>
+            style="text-decoration: line-through;"
+          <% end %>>
+        <!-- La ligne ci dessus permet de barrer la tâche une fois qu'ellea été réalisée (comme sur Notion) -->
+
+
+        <%= check_box_tag :name, 1, task.status , data: { remote: true, url: task_path(task), params: { id: task.id}.to_param, method: "put" }%>
+        <%= task.title  %>
+        <% unless task.deadline.nil? %>
+          , to read: <%= task.deadline.strftime('%D')  %>
+        <% end %>
+         <!-- Ajout d'une icone pour la suppression éventuelle d'une tâche -->
+        <%= link_to fa_icon("trash"), task_path(task), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+  </ul>
+</div>
+
+<div class="container">
+  <div class="row">
+    <% @tasks.each do |task|  %>
+      <div class="card col-3">
+        <% unless task.image.nil? %>
+          <%= image_tag task.image, class: "rounded-circle" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

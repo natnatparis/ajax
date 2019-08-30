@@ -1,0 +1,7 @@
+/*Ligne permettant de selectionner l'élément du dom dont l'id est body soit l'ensemble du corps de l'email.
+Une fois l'élément selectionné, on pourra y insérer le body de l'email*/
+{
+let emailBody = document.getElementById("body");
+emailBody.innerHTML = "";
+emailBody.insertAdjacentHTML("beforeend", "<%= j render 'email', email: @email %>");
+}

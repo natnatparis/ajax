@@ -1,0 +1,19 @@
+<div class="container">
+	<p class="text-center">
+		<%= link_to "Recevoir un email", emails_path, method: :post, remote: true, class:"btn btn-sm btn-outline-primary" %>
+	</p><br>
+	<div class="row">
+		<div class="col-md-5 border " id="emails">
+			<% @emails.each do |email| %>
+				<p class="email" id="email-<%= email.id %>">
+	
+					<%= link_to email.object, email_path(email), remote: true %>
+					<%= link_to fa_icon("trash"), email_path(email), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+				</p>
+			<% end %>
+		</div>
+		<div class="col-md-7 border" id="body">
+			
+		</div>
+	</div>
+</div><br><br><br>

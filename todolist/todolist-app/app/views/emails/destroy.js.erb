@@ -1,0 +1,6 @@
+//On pointe sur le contenu de l'email et on veut supprimer ce dernier dès lors que l'on clique sur le bouton delete
+{
+let bodyElt = document.getElementById("body");
+bodyElt.innerHTML = "";
+$('#email-<%=@email.id%>').remove();
+}

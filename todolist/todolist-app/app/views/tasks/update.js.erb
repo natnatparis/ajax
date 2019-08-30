@@ -1,0 +1,8 @@
+//On pointe sur la tâche et on modifie le style en fonction du status de cette dernière
+let actualTask = document.getElementsByClassName("task-<%= @task.id %>")[0];
+ if (<%= @task.status %>)
+{
+ 	actualTask.style.textDecoration = "line-through";
+} else {
+	actualTask.style.textDecoration = "";
+}

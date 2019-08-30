@@ -1,0 +1,2 @@
+let list = document.getElementsByClassName("category-<%= @category.id %>")[0].getElementsByTagName("ul")[0];
+list.insertAdjacentHTML("beforeend", "<%= j render 'task', task: @task %>");

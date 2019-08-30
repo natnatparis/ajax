@@ -1,0 +1,10 @@
+<li id="task-<%= task.id%>">
+	<!--Ligne permettant d'ajouter une checkbox pour le suivi d'une tâche et modifier l'info associée à cette dernière dans la BDD -->
+	<%= check_box_tag :name, 1, task.status , data: { remote: true, url: task_path(task), params: { id: task.id}.to_param, method: "put" }%>
+  <%= task.title  %>
+  <% unless task.deadline.nil? %>
+    , to read: <%= task.deadline.strftime('%D')  %>
+  <% end %>
+ 	<!-- Ajout d'une icone pour la suppression éventuelle d'une tâche -->
+   <%= link_to fa_icon("trash"), task_path(task), method: :delete, data: { confirm: 'Are you sure?' }, remote: true %>
+</li>
